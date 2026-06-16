@@ -387,6 +387,7 @@
       margin: 0;
       min-width: 0;
       background: #fff;
+      cursor: zoom-in;
     }
 
     .photo-card.wide {
@@ -398,19 +399,10 @@
       width: 100%;
       aspect-ratio: 2 / 3;
       object-fit: cover;
-      filter: grayscale(.82);
     }
 
     .photo-card.wide img {
       aspect-ratio: 4 / 5;
-    }
-
-    .photo-card.soft img {
-      filter: grayscale(.25);
-    }
-
-    .photo-card.full-color img {
-      filter: none;
     }
 
     .photo-card figcaption {
@@ -419,6 +411,62 @@
       font-size: 10px;
       letter-spacing: .2em;
       text-transform: uppercase;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12px;
+      padding: 14px;
+      background: rgba(9, 9, 8, .94);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, .76);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .lightbox-close {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, .26);
+      background: transparent;
+      color: #fff;
+      font: inherit;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .lightbox-img {
+      align-self: center;
+      justify-self: center;
+      max-width: 100%;
+      max-height: calc(100svh - 126px);
+      object-fit: contain;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .38);
+    }
+
+    .lightbox-caption {
+      min-height: 22px;
+      color: rgba(255, 255, 255, .68);
+      text-align: center;
+      font-size: 13px;
     }
 
     .location {
@@ -764,6 +812,14 @@
       allow="autoplay; encrypted-media; picture-in-picture"
       allowfullscreen></iframe>
   </aside>
+  <aside class="lightbox" id="lightbox" aria-label="사진 크게 보기" aria-hidden="true">
+    <div class="lightbox-top">
+      <span>Wedding gallery</span>
+      <button type="button" class="lightbox-close" id="lightboxClose" aria-label="사진 닫기">×</button>
+    </div>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </aside>
 
   <script>
     const weddingDate = new Date("2026-08-29T18:00:00+09:00");
@@ -833,6 +889,41 @@
       const frame = document.querySelector("#musicFrame");
       dock.classList.remove("open");
       frame.src = "";
+    });
+
+    const lightbox = document.querySelector("#lightbox");
+    const lightboxImg = document.querySelector("#lightboxImg");
+    const lightboxCaption = document.querySelector("#lightboxCaption");
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImg.src = "";
+      lightboxImg.alt = "";
+      lightboxCaption.textContent = "";
+    }
+
+    document.querySelectorAll(".feature-photo img, .photo-card img").forEach((image) => {
+      image.addEventListener("click", () => {
+        const caption = image.closest("figure")?.querySelector("figcaption")?.textContent || image.alt;
+        lightboxImg.src = image.currentSrc || image.src;
+        lightboxImg.alt = image.alt;
+        lightboxCaption.textContent = caption;
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+      });
+    });
+
+    document.querySelector("#lightboxClose").addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("open")) {
+        closeLightbox();
+      }
     });
 
     document.querySelector("#shareBtn").addEventListener("click", async () => {
