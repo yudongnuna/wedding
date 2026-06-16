@@ -146,7 +146,7 @@
 
     .actions {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       border: 1px solid var(--white-line);
       background: var(--white-line);
@@ -164,6 +164,69 @@
       letter-spacing: .12em;
       text-decoration: none;
       cursor: pointer;
+    }
+
+    .music-dock {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      z-index: 20;
+      width: min(470px, calc(100vw - 28px));
+      transform: translate(-50%, 130%);
+      opacity: 0;
+      background: rgba(13, 13, 12, .94);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, .18);
+      transition: .28s ease;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .32);
+    }
+
+    .music-dock.open {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    .music-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, .14);
+    }
+
+    .music-head p {
+      margin: 0;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .74);
+    }
+
+    .music-head strong {
+      display: block;
+      margin-top: 2px;
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .music-close {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 255, 255, .22);
+      background: transparent;
+      color: #fff;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .music-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display: block;
     }
 
     section {
@@ -535,6 +598,7 @@
         </div>
         <div class="actions">
           <a href="#location">Map</a>
+          <button type="button" id="musicBtn">Music</button>
           <button type="button" id="shareBtn">Share</button>
           <button type="button" id="calendarBtn">Save</button>
         </div>
@@ -685,10 +749,26 @@
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <aside class="music-dock" id="musicDock" aria-label="배경 음악 플레이어">
+    <div class="music-head">
+      <div>
+        <p>Now playing</p>
+        <strong>Bill Evans · Skating In Central Park</strong>
+      </div>
+      <button type="button" class="music-close" id="musicClose" aria-label="음악 닫기">×</button>
+    </div>
+    <iframe
+      class="music-frame"
+      id="musicFrame"
+      title="Bill Evans - Skating In Central Park"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen></iframe>
+  </aside>
 
   <script>
     const weddingDate = new Date("2026-08-29T18:00:00+09:00");
     const address = "서울 송파구 법원로9길 26 H비즈니스파크 D동 루이비스컨벤션 B1층";
+    const musicUrl = "https://www.youtube.com/embed/qGF7873UxTw?autoplay=1&rel=0&modestbranding=1";
     const toast = document.querySelector("#toast");
 
     function showToast(message) {
@@ -736,6 +816,23 @@
 
         copyText(button.dataset.copy, "계좌번호가 복사되었습니다");
       });
+    });
+
+    document.querySelector("#musicBtn").addEventListener("click", () => {
+      const dock = document.querySelector("#musicDock");
+      const frame = document.querySelector("#musicFrame");
+      if (!frame.src) {
+        frame.src = musicUrl;
+      }
+      dock.classList.add("open");
+      showToast("음악 플레이어를 열었습니다");
+    });
+
+    document.querySelector("#musicClose").addEventListener("click", () => {
+      const dock = document.querySelector("#musicDock");
+      const frame = document.querySelector("#musicFrame");
+      dock.classList.remove("open");
+      frame.src = "";
     });
 
     document.querySelector("#shareBtn").addEventListener("click", async () => {
