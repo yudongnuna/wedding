@@ -54,3 +54,5 @@ Makefile
 server.out.log
 server.err.log
 node_modules/
+assets/photos/
+assets/gallery-contact-sheet.jpg

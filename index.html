@@ -8,7 +8,7 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <meta property="og:title" content="황민수 · 서유진 Wedding Invitation">
   <meta property="og:description" content="2026.08.29 SAT 18:00 Louisvis Convention">
-  <meta property="og:image" content="assets/editorial-hero.png">
+  <meta property="og:image" content="assets/gallery/photo-17.jpg">
   <style>
     :root {
       --black: #0d0d0c;
@@ -54,7 +54,7 @@
       color: #fff;
       background:
         linear-gradient(180deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .08) 45%, rgba(0, 0, 0, .78)),
-        url("assets/editorial-hero.png") center / cover;
+        url("assets/gallery/photo-17.jpg") center 42% / cover;
     }
 
     .nav {
@@ -72,6 +72,16 @@
       border: 1px solid var(--white-line);
       padding: 7px 10px;
       font-size: 10px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .04) 36%, rgba(0, 0, 0, .82)),
+        linear-gradient(90deg, rgba(0, 0, 0, .25), rgba(0, 0, 0, 0) 48%);
+      pointer-events: none;
     }
 
     .hero-center {
@@ -269,6 +279,27 @@
       text-transform: uppercase;
     }
 
+    .feature-photo {
+      padding: 0;
+      background: var(--black);
+    }
+
+    .feature-photo img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+    }
+
+    .feature-caption {
+      padding: 22px;
+      color: rgba(255, 255, 255, .68);
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      border-top: 1px solid var(--white-line);
+    }
+
     .gallery {
       padding-left: 0;
       padding-right: 0;
@@ -284,24 +315,48 @@
     .photo-stack {
       margin-top: 30px;
       display: grid;
-      gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      padding: 0 8px;
     }
 
-    .photo {
-      min-height: 410px;
-      background:
-        linear-gradient(135deg, rgba(13, 13, 12, .2), rgba(246, 242, 235, .08)),
-        var(--image, url("assets/editorial-hero.png")) center / cover;
-      filter: grayscale(.95);
+    .photo-card {
+      margin: 0;
+      min-width: 0;
+      background: #fff;
     }
 
-    .photo.small {
-      min-height: 280px;
+    .photo-card.wide {
+      grid-column: 1 / -1;
     }
 
-    .photo:nth-child(1) { --image: url("assets/photo-1.jpg"); }
-    .photo:nth-child(2) { --image: url("assets/photo-2.jpg"); }
-    .photo:nth-child(3) { --image: url("assets/photo-3.jpg"); }
+    .photo-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      filter: grayscale(.82);
+    }
+
+    .photo-card.wide img {
+      aspect-ratio: 4 / 5;
+    }
+
+    .photo-card.soft img {
+      filter: grayscale(.25);
+    }
+
+    .photo-card.full-color img {
+      filter: none;
+    }
+
+    .photo-card figcaption {
+      padding: 8px 2px 0;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
 
     .location {
       background: var(--ivory);
@@ -501,6 +556,11 @@
       </div>
     </section>
 
+    <section class="feature-photo" aria-label="대표 웨딩 사진">
+      <img src="assets/gallery/photo-01.jpg" alt="황민수와 서유진의 웨딩 사진" loading="lazy">
+      <div class="feature-caption">Minsu and Yujin · 2026</div>
+    </section>
+
     <section class="date-band">
       <p class="kicker">The day</p>
       <div class="date-row">
@@ -523,9 +583,66 @@
       <p class="kicker">Gallery</p>
       <h2>Captured<br>moments</h2>
       <div class="photo-stack">
-        <div class="photo"></div>
-        <div class="photo small"></div>
-        <div class="photo small"></div>
+        <figure class="photo-card wide full-color">
+          <img src="assets/gallery/photo-02.jpg" alt="웃고 있는 신랑 신부" loading="lazy">
+          <figcaption>Bright scene</figcaption>
+        </figure>
+        <figure class="photo-card soft">
+          <img src="assets/gallery/photo-03.jpg" alt="신부 단독 웨딩 사진" loading="lazy">
+        </figure>
+        <figure class="photo-card">
+          <img src="assets/gallery/photo-07.jpg" alt="신랑 단독 웨딩 사진" loading="lazy">
+        </figure>
+        <figure class="photo-card">
+          <img src="assets/gallery/photo-06.jpg" alt="부케를 든 신랑 단독 사진" loading="lazy">
+        </figure>
+        <figure class="photo-card">
+          <img src="assets/gallery/photo-12.jpg" alt="블랙 수트 신랑 전신 사진" loading="lazy">
+        </figure>
+        <figure class="photo-card wide">
+          <img src="assets/gallery/photo-04.jpg" alt="함께 서 있는 신랑 신부" loading="lazy">
+          <figcaption>White room</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="assets/gallery/photo-05.jpg" alt="신부 드레스 전신 사진" loading="lazy">
+        </figure>
+        <figure class="photo-card">
+          <img src="assets/gallery/photo-10.jpg" alt="신랑 블랙 수트 사진" loading="lazy">
+        </figure>
+        <figure class="photo-card wide soft">
+          <img src="assets/gallery/photo-16.jpg" alt="앉아 있는 신랑 신부" loading="lazy">
+          <figcaption>Portrait</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="assets/gallery/photo-08.jpg" alt="신부가 앉아 있는 웨딩 사진" loading="lazy">
+        </figure>
+        <figure class="photo-card">
+          <img src="assets/gallery/photo-11.jpg" alt="신랑 블랙 수트 착석 사진" loading="lazy">
+        </figure>
+        <figure class="photo-card wide full-color">
+          <img src="assets/gallery/photo-18.jpg" alt="꽃 배경 앞 신랑 신부" loading="lazy">
+          <figcaption>With flowers</figcaption>
+        </figure>
+        <figure class="photo-card wide full-color">
+          <img src="assets/gallery/photo-09.jpg" alt="꽃 장식 앞에서 웃고 있는 신랑 신부" loading="lazy">
+          <figcaption>Studio garden</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="assets/gallery/photo-13.jpg" alt="클래식한 신랑 신부 웨딩 사진" loading="lazy">
+        </figure>
+        <figure class="photo-card soft">
+          <img src="assets/gallery/photo-15.jpg" alt="신부 베일 사진" loading="lazy">
+        </figure>
+        <figure class="photo-card wide">
+          <img src="assets/gallery/photo-19.jpg" alt="블랙 수트와 드레스의 신랑 신부" loading="lazy">
+          <figcaption>Black and white mood</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="assets/gallery/photo-14.jpg" alt="행복하게 웃는 신랑 신부" loading="lazy">
+        </figure>
+        <figure class="photo-card soft">
+          <img src="assets/gallery/photo-20.jpg" alt="신부 클로즈업 사진" loading="lazy">
+        </figure>
       </div>
     </section>
 
