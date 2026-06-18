@@ -13,10 +13,10 @@
     :root {
       --black: #111110;
       --ink: #171717;
-      --muted: #6d6d68;
-      --paper: #f7f7f4;
+      --muted: #6b6b67;
+      --paper: #fdfdfb;
       --ivory: #ffffff;
-      --mist: #efefeb;
+      --mist: #f4f4f2;
       --line: rgba(23, 23, 22, .13);
       --white-line: rgba(255, 255, 255, .26);
     }
@@ -28,9 +28,12 @@
     body {
       margin: 0;
       color: var(--ink);
-      background: #f0f0ed;
-      font-family: "Pretendard", "SUIT", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-      line-height: 1.7;
+      background: #fafafa;
+      font-family: "Pretendard Variable", "Pretendard", "SUIT", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+      line-height: 1.75;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     .scroll-progress {
@@ -66,7 +69,7 @@
       display: grid;
       grid-template-rows: auto 1fr auto;
       color: #fff;
-      background: #f4f4f1;
+      background: #f8f8f7;
       overflow: hidden;
     }
 
@@ -234,8 +237,11 @@
 
     .lead {
       margin: 28px 0 0;
-      color: #4c4944;
+      color: #3f3f3b;
       font-size: 16px;
+      line-height: 1.9;
+      font-weight: 400;
+      letter-spacing: .01em;
       word-break: keep-all;
     }
 
@@ -295,8 +301,9 @@
 
     .date-row p {
       margin: 0;
-      color: #4c4c48;
+      color: #3f3f3b;
       font-size: 14px;
+      line-height: 1.75;
     }
 
     .count-grid {
@@ -353,6 +360,55 @@
       letter-spacing: .18em;
       text-transform: uppercase;
       border-top: 1px solid var(--line);
+    }
+
+    .story {
+      background: #ffffff;
+    }
+
+    .story-copy {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .story-copy p {
+      margin: 0;
+      color: #3f3f3b;
+      font-size: 15px;
+      line-height: 1.9;
+      letter-spacing: .01em;
+      word-break: keep-all;
+    }
+
+    .story-copy p + p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .story-layout {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .story-side {
+      display: grid;
+      gap: 8px;
+    }
+
+    .story .photo-card img {
+      aspect-ratio: 3 / 4;
+    }
+
+    .story .photo-card.tall img {
+      height: 100%;
+      aspect-ratio: auto;
+      object-fit: cover;
     }
 
     .gallery {
@@ -473,7 +529,7 @@
     }
 
     .location {
-      background: #fbfbf8;
+      background: #ffffff;
     }
 
     .info {
@@ -497,7 +553,8 @@
 
     .info-row p {
       margin: 0;
-      color: #4c4944;
+      color: #3f3f3b;
+      line-height: 1.75;
     }
 
     .map-image {
@@ -540,46 +597,74 @@
     }
 
     .guide {
-      margin-top: 28px;
+      margin-top: 30px;
       display: grid;
-      gap: 14px;
+      gap: 0;
+      border-top: 1px solid var(--line);
     }
 
     .guide-item {
-      border-top: 1px solid var(--line);
-      padding-top: 16px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
     }
 
     .guide-item b {
       display: block;
-      margin-bottom: 5px;
-      font-size: 11px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.4;
+      font-weight: 600;
+      letter-spacing: .18em;
     }
 
     .guide-item p {
       margin: 0;
-      color: #4c4944;
-      font-size: 14px;
+      color: #3f3f3b;
+      font-size: 14.5px;
+      line-height: 1.85;
+      font-weight: 400;
+      letter-spacing: .01em;
       word-break: keep-all;
     }
 
     .guide-item ul {
       margin: 0;
-      padding-left: 17px;
-      color: #4c4944;
-      font-size: 14px;
+      padding: 0;
+      color: #3f3f3b;
+      font-size: 14.5px;
+      line-height: 1.85;
+      font-weight: 400;
+      letter-spacing: .01em;
+      list-style: none;
       word-break: keep-all;
     }
 
     .guide-item li + li {
-      margin-top: 4px;
+      margin-top: 7px;
+    }
+
+    .guide-item li {
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .guide-item li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .85em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(23, 23, 22, .38);
     }
 
     .guide-note {
-      color: #a33a31;
-      font-weight: 700;
+      margin-top: 4px !important;
+      color: #8f3b34 !important;
+      font-size: 13.5px !important;
+      font-weight: 500;
     }
 
     .contact {
@@ -629,7 +714,7 @@
     }
 
     .rsvp {
-      background: #fbfbf8;
+      background: #ffffff;
     }
 
     .rsvp-form {
@@ -646,8 +731,8 @@
       background: var(--ink);
       color: #fff;
       font: inherit;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      letter-spacing: .08em;
+      text-transform: none;
       cursor: pointer;
     }
 
@@ -675,11 +760,18 @@
       color: var(--ink);
       font: inherit;
       font-size: 16px;
+      line-height: 1.35;
       padding: 10px 0;
+    }
+
+    .field input,
+    .field select {
+      min-height: 44px;
     }
 
     .field textarea {
       min-height: 96px;
+      line-height: 1.6;
       resize: vertical;
     }
 
@@ -752,11 +844,18 @@
     }
 
     .account {
-      background: #f4f4f0;
+      background: #fbfbfa;
+    }
+
+    .account .lead {
+      margin-top: 18px;
+      margin-bottom: 28px;
+      font-size: 15px;
+      line-height: 1.85;
     }
 
     .account-card {
-      margin-top: 30px;
+      margin-top: 0;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
       padding: 22px 0;
@@ -866,9 +965,9 @@
     }
 
     .footer-share .kakao-share {
-      border-color: #f1d84b;
-      background: #f7df52;
-      color: #231f20;
+      border-color: var(--ink);
+      background: var(--ink);
+      color: #fff;
     }
 
     .modal {
@@ -890,7 +989,7 @@
       width: min(100%, 460px);
       max-height: calc(100svh - 44px);
       overflow-y: auto;
-      background: #fbfbf8;
+      background: #ffffff;
       border: 1px solid var(--line);
       padding: 26px 22px;
       box-shadow: 0 28px 80px rgba(0, 0, 0, .24);
@@ -948,10 +1047,11 @@
 
     .music-credit {
       display: block;
-      margin-top: 28px;
-      color: #9a9a94;
-      font-size: 10px;
-      letter-spacing: .08em;
+      margin-top: 22px;
+      color: #aaa9a3;
+      font-size: 9px;
+      line-height: 1.5;
+      letter-spacing: .04em;
       text-decoration: none;
     }
 
@@ -1027,6 +1127,14 @@
     }
 
     @media (max-width: 540px) {
+      .story-layout {
+        grid-template-columns: 1.05fr .95fr;
+      }
+
+      .story-copy p {
+        font-size: 14.5px;
+      }
+
       .music-toggle {
         right: 14px;
       }
@@ -1102,6 +1210,29 @@
         <div class="count"><strong id="hours">0</strong><span>Hours</span></div>
         <div class="count"><strong id="minutes">0</strong><span>Min</span></div>
         <div class="count"><strong id="seconds">0</strong><span>Sec</span></div>
+      </div>
+    </section>
+
+    <section class="story">
+      <p class="kicker">Our scene</p>
+      <h2>The way<br>we are</h2>
+      <p class="section-ko">[우리다운 장면]</p>
+      <div class="story-layout">
+        <figure class="photo-card tall">
+          <img src="assets/gallery/photo-02.jpg" alt="함께 선 신랑 신부의 웨딩 사진" loading="lazy">
+        </figure>
+        <div class="story-side">
+          <figure class="photo-card">
+            <img src="assets/gallery/photo-08.jpg" alt="서로를 바라보는 신랑 신부의 웨딩 사진" loading="lazy">
+          </figure>
+          <figure class="photo-card">
+            <img src="assets/gallery/photo-11.jpg" alt="조용한 분위기의 신랑 신부 웨딩 사진" loading="lazy">
+          </figure>
+        </div>
+      </div>
+      <div class="story-copy">
+        <p>화려한 장면보다 오래 남는 건<br>서로를 바라보던 조용한 마음이었습니다.</p>
+        <p>그 마음을 안고, 저희답게 천천히 같은 방향으로 걸어가려 합니다.</p>
       </div>
     </section>
 
@@ -1248,13 +1379,14 @@
       <h2>Will you<br>join us?</h2>
       <p class="section-ko">[참석 여부]</p>
       <p class="lead">참석 여부와 축하 메시지를 남겨주시면<br>준비에 큰 도움이 됩니다.</p>
-      <button type="button" class="rsvp-open" id="rsvpOpenBtn">RSVP 보내기</button>
+      <button type="button" class="rsvp-open" id="rsvpOpenBtn">참석 여부 보내기</button>
     </section>
 
     <section class="account">
       <p class="kicker">For heart</p>
       <h2>Thankful<br>mind</h2>
       <p class="section-ko">[마음 전하실 곳]</p>
+      <p class="lead">멀리서 전해주시는 마음도<br>감사히 간직하겠습니다.</p>
       <div class="account-card">
         <button type="button" class="account-toggle" aria-expanded="false">
           <span>
@@ -1268,7 +1400,6 @@
           <button type="button" class="account-copy copy-btn" data-copy="1000-7612-4133">복사</button>
         </div>
       </div>
-      <p class="lead">멀리서 전해주시는 마음도<br>감사히 간직하겠습니다.</p>
       <div class="account-card">
         <button type="button" class="account-toggle" aria-expanded="false">
           <span>
@@ -1287,12 +1418,12 @@
     <section class="closing">
       <p class="big">Thank<br>you</p>
       <p class="section-ko">[감사합니다]</p>
-      <a class="music-credit" href="https://incompetech.com/music/royalty-free/index.html?Search=Search&isrc=USUAN1600055" target="_blank" rel="noreferrer">Music: Instruments: Piano, Bass, Drums, Guitar</a>
       <p>귀한 걸음으로 함께해 주시는 마음,<br>오래도록 잊지 않겠습니다.</p>
       <div class="footer-share" aria-label="청첩장 공유">
         <button type="button" class="kakao-share" id="kakaoShareBtn">카카오톡 공유</button>
         <button type="button" id="linkShareBtn">링크 복사</button>
       </div>
+      <a class="music-credit" href="https://pixabay.com/music/modern-jazz-classical-jazz-lounge-546827/" target="_blank" rel="noreferrer">Music: Classical Jazz Lounge - Waveloom (Pixabay)</a>
     </section>
   </main>
 
@@ -1662,7 +1793,7 @@
 
     if (!prefersReducedMotion) {
       const revealTargets = document.querySelectorAll(
-        ".info-row, .guide-item, .contact-card, .account-card"
+        ".story .photo-card, .story-copy, .info-row, .guide-item, .contact-card, .account-card"
       );
       revealTargets.forEach((target) => {
         target.classList.add("reveal");
