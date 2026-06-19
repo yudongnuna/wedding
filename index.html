@@ -746,6 +746,14 @@
       gap: 16px;
     }
 
+    .rsvp-form-note {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
     .rsvp-open {
       width: 100%;
       min-height: 52px;
@@ -941,13 +949,28 @@
 
     .account-card.open .account-panel {
       display: grid;
+      gap: 10px;
+    }
+
+    .account-number-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
       gap: 12px;
+      align-items: center;
     }
 
     .account-copy,
     .copy-btn {
       min-width: 74px;
       min-height: 42px;
+    }
+
+    .account-copy {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: .08em;
     }
 
     .closing {
@@ -1399,8 +1422,10 @@
         </button>
         <div class="account-panel">
           <p>토스뱅크</p>
-          <strong>1000-7612-4133</strong>
-          <button type="button" class="account-copy copy-btn" data-copy="1000-7612-4133">복사</button>
+          <div class="account-number-row">
+            <strong>1000-7612-4133</strong>
+            <button type="button" class="account-copy copy-btn" data-copy="1000-7612-4133">복사</button>
+          </div>
         </div>
       </div>
       <div class="account-card">
@@ -1412,8 +1437,10 @@
         </button>
         <div class="account-panel">
           <p>기업은행</p>
-          <strong>01077576248</strong>
-          <button type="button" class="account-copy copy-btn" data-copy="01077576248">복사</button>
+          <div class="account-number-row">
+            <strong>01077576248</strong>
+            <button type="button" class="account-copy copy-btn" data-copy="01077576248">복사</button>
+          </div>
         </div>
       </div>
     </section>
@@ -1440,7 +1467,7 @@
         </div>
         <button type="button" class="modal-close" id="rsvpCloseBtn" aria-label="참석 여부 닫기">×</button>
       </div>
-      <form class="rsvp-form" id="rsvpForm" name="wedding-rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="rsvp-form" id="rsvpForm">
         <input type="hidden" name="form-name" value="wedding-rsvp">
         <p hidden>
           <label>Don’t fill this out: <input name="bot-field"></label>
@@ -1480,7 +1507,8 @@
           <label for="message">축하 메시지</label>
           <textarea id="message" name="message" placeholder="축하 메시지"></textarea>
         </div>
-        <button class="submit-btn" type="submit">참석 여부 보내기</button>
+        <p class="rsvp-form-note">참석 여부는 구글폼에서 작성해 주세요.</p>
+        <button class="submit-btn" type="button" id="googleFormBtn">구글폼으로 작성하기</button>
       </form>
       <div class="rsvp-success" id="rsvpSuccess" aria-live="polite">
         <p class="kicker">Thank you</p>
@@ -1721,6 +1749,7 @@
     const rsvpModal = document.querySelector("#rsvpModal");
     const rsvpForm = document.querySelector("#rsvpForm");
     const rsvpSuccess = document.querySelector("#rsvpSuccess");
+    const googleFormUrl = "https://forms.gle/Nq61RvzcnrYRG6Jh8";
     let rsvpSuccessTimer;
 
     function openRsvpModal() {
@@ -1742,39 +1771,20 @@
     document.querySelector("#rsvpOpenBtn").addEventListener("click", openRsvpModal);
     document.querySelector("#rsvpCloseBtn").addEventListener("click", closeRsvpModal);
     document.querySelector("#rsvpDoneBtn").addEventListener("click", closeRsvpModal);
+    document.querySelector("#googleFormBtn").addEventListener("click", () => {
+      if (!googleFormUrl) {
+        showToast("구글폼 링크를 연결해 주세요");
+        return;
+      }
+
+      window.open(googleFormUrl, "_blank", "noopener,noreferrer");
+      rsvpForm.style.display = "none";
+      rsvpSuccess.classList.add("show");
+      rsvpSuccessTimer = window.setTimeout(closeRsvpModal, 2200);
+    });
     rsvpModal.addEventListener("click", (event) => {
       if (event.target === rsvpModal) {
         closeRsvpModal();
-      }
-    });
-
-    rsvpForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const submitButton = rsvpForm.querySelector(".submit-btn");
-      submitButton.disabled = true;
-      submitButton.textContent = "전송 중";
-
-      try {
-        const body = new URLSearchParams(new FormData(rsvpForm)).toString();
-        const response = await fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body
-        });
-
-        if (!response.ok) {
-          throw new Error("RSVP submit failed");
-        }
-
-        rsvpForm.reset();
-        rsvpForm.style.display = "none";
-        rsvpSuccess.classList.add("show");
-        rsvpSuccessTimer = window.setTimeout(closeRsvpModal, 2200);
-      } catch {
-        showToast("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = "참석 여부 보내기";
       }
     });
 
