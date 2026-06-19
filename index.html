@@ -1800,16 +1800,7 @@
     const rsvpModal = document.querySelector("#rsvpModal");
     const rsvpForm = document.querySelector("#rsvpForm");
     const rsvpSuccess = document.querySelector("#rsvpSuccess");
-    const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfGFMuRcbAg8W6-47NUC4zhBnnc9dDmu6BTKta8cyw8Hu1BdA/viewform";
-    const googleFormAction = "https://docs.google.com/forms/d/e/1FAIpQLSfGFMuRcbAg8W6-47NUC4zhBnnc9dDmu6BTKta8cyw8Hu1BdA/formResponse";
-    const googleFormEntries = {
-      name: "entry.1485805539",
-      phone: "entry.2038219285",
-      attendance: "entry.260945187",
-      guests: "entry.292491973",
-      meal: "entry.1679056843",
-      message: "entry.635658636"
-    };
+    const rsvpEndpoint = "https://script.google.com/macros/s/AKfycbyd1jg9T65E57BMbtMEHYZF614Jsm8nL7aRRInE6A91EtdjYfv32ECcL2DZoQcIkoq3/exec";
     let rsvpSuccessTimer;
 
     function openRsvpModal() {
@@ -1837,12 +1828,8 @@
       }
     });
 
-    function googleFormIsReady() {
-      return googleFormAction && Object.values(googleFormEntries).every(Boolean);
-    }
-
-    function submitToGoogleForm(formData) {
-      const iframeName = "hidden-google-form-submit";
+    function submitRsvp(formData) {
+      const iframeName = "hidden-rsvp-submit";
       let iframe = document.querySelector(`iframe[name="${iframeName}"]`);
 
       if (!iframe) {
@@ -1854,15 +1841,15 @@
 
       const form = document.createElement("form");
       form.method = "POST";
-      form.action = googleFormAction;
+      form.action = rsvpEndpoint;
       form.target = iframeName;
       form.style.display = "none";
 
-      Object.entries(googleFormEntries).forEach(([name, entry]) => {
+      formData.forEach((value, name) => {
         const input = document.createElement("input");
         input.type = "hidden";
-        input.name = entry;
-        input.value = formData.get(name) || "";
+        input.name = name;
+        input.value = value;
         form.appendChild(input);
       });
 
@@ -1878,9 +1865,8 @@
         return;
       }
 
-      if (!googleFormIsReady()) {
-        showToast("구글폼 저장 연결을 마무리해야 합니다");
-        window.open(googleFormUrl, "_blank", "noopener,noreferrer");
+      if (!rsvpEndpoint) {
+        showToast("참석 여부 저장 연결을 확인해 주세요");
         return;
       }
 
@@ -1891,7 +1877,7 @@
       submitButton.textContent = "전송 중";
 
       try {
-        submitToGoogleForm(formData);
+        submitRsvp(formData);
 
         rsvpForm.reset();
         rsvpForm.style.display = "none";
