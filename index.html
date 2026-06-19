@@ -194,7 +194,7 @@
     .actions button {
       min-height: 58px;
       border: 0;
-      background: rgba(255, 255, 255, .08);
+      background: rgba(0, 0, 0, .36);
       backdrop-filter: blur(14px);
       color: #fff;
       font: inherit;
@@ -207,17 +207,19 @@
       gap: 5px;
       padding: 9px 4px;
       cursor: pointer;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, .34);
     }
 
     .action-main {
       display: block;
       line-height: 1;
       letter-spacing: .12em;
+      font-weight: 600;
     }
 
     .action-sub {
       display: block;
-      color: rgba(255, 232, 228, .76);
+      color: rgba(255, 255, 255, .82);
       font-size: 10px;
       line-height: 1;
       letter-spacing: .04em;
@@ -1174,6 +1176,31 @@
     }
 
     @media (max-width: 540px) {
+      .story-layout {
+        gap: 16px;
+      }
+
+      .story .editorial-main {
+        width: 92%;
+      }
+
+      .story-pair {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .story-pair .photo-card:first-child {
+        width: 78%;
+        justify-self: start;
+        transform: translateY(0);
+      }
+
+      .story-pair .photo-card:last-child {
+        width: 82%;
+        justify-self: end;
+        transform: translateY(0);
+      }
+
       .music-toggle {
         right: 14px;
       }
@@ -1507,8 +1534,7 @@
           <label for="message">축하 메시지</label>
           <textarea id="message" name="message" placeholder="축하 메시지"></textarea>
         </div>
-        <p class="rsvp-form-note">참석 여부는 구글폼에서 작성해 주세요.</p>
-        <button class="submit-btn" type="button" id="googleFormBtn">구글폼으로 작성하기</button>
+        <button class="submit-btn" type="submit">참석 여부 보내기</button>
       </form>
       <div class="rsvp-success" id="rsvpSuccess" aria-live="polite">
         <p class="kicker">Thank you</p>
@@ -1749,7 +1775,16 @@
     const rsvpModal = document.querySelector("#rsvpModal");
     const rsvpForm = document.querySelector("#rsvpForm");
     const rsvpSuccess = document.querySelector("#rsvpSuccess");
-    const googleFormUrl = "https://forms.gle/Nq61RvzcnrYRG6Jh8";
+    const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfGFMuRcbAg8W6-47NUC4zhBnnc9dDmu6BTKta8cyw8Hu1BdA/viewform";
+    const googleFormAction = "https://docs.google.com/forms/d/e/1FAIpQLSfGFMuRcbAg8W6-47NUC4zhBnnc9dDmu6BTKta8cyw8Hu1BdA/formResponse";
+    const googleFormEntries = {
+      name: "entry.1485805539",
+      phone: "entry.2038219285",
+      attendance: "entry.260945187",
+      guests: "entry.292491973",
+      meal: "entry.1679056843",
+      message: "entry.635658636"
+    };
     let rsvpSuccessTimer;
 
     function openRsvpModal() {
@@ -1771,20 +1806,51 @@
     document.querySelector("#rsvpOpenBtn").addEventListener("click", openRsvpModal);
     document.querySelector("#rsvpCloseBtn").addEventListener("click", closeRsvpModal);
     document.querySelector("#rsvpDoneBtn").addEventListener("click", closeRsvpModal);
-    document.querySelector("#googleFormBtn").addEventListener("click", () => {
-      if (!googleFormUrl) {
-        showToast("구글폼 링크를 연결해 주세요");
-        return;
-      }
-
-      window.open(googleFormUrl, "_blank", "noopener,noreferrer");
-      rsvpForm.style.display = "none";
-      rsvpSuccess.classList.add("show");
-      rsvpSuccessTimer = window.setTimeout(closeRsvpModal, 2200);
-    });
     rsvpModal.addEventListener("click", (event) => {
       if (event.target === rsvpModal) {
         closeRsvpModal();
+      }
+    });
+
+    function googleFormIsReady() {
+      return googleFormAction && Object.values(googleFormEntries).every(Boolean);
+    }
+
+    rsvpForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!googleFormIsReady()) {
+        showToast("구글폼 저장 연결을 마무리해야 합니다");
+        window.open(googleFormUrl, "_blank", "noopener,noreferrer");
+        return;
+      }
+
+      const submitButton = rsvpForm.querySelector(".submit-btn");
+      const formData = new FormData(rsvpForm);
+      const googleData = new FormData();
+      Object.entries(googleFormEntries).forEach(([name, entry]) => {
+        googleData.append(entry, formData.get(name) || "");
+      });
+
+      submitButton.disabled = true;
+      submitButton.textContent = "전송 중";
+
+      try {
+        await fetch(googleFormAction, {
+          method: "POST",
+          mode: "no-cors",
+          body: googleData
+        });
+
+        rsvpForm.reset();
+        rsvpForm.style.display = "none";
+        rsvpSuccess.classList.add("show");
+        rsvpSuccessTimer = window.setTimeout(closeRsvpModal, 2200);
+      } catch {
+        showToast("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "참석 여부 보내기";
       }
     });
 
