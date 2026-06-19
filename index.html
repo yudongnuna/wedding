@@ -1516,7 +1516,7 @@
         </div>
         <div class="field">
           <label for="guestPhone">연락처</label>
-          <input id="guestPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="연락처">
+          <input id="guestPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="연락처" required>
         </div>
         <div class="field">
           <span class="choice-title">참석 여부</span>
@@ -1527,7 +1527,8 @@
         </div>
         <div class="field">
           <label for="guestCount">인원</label>
-          <select id="guestCount" name="guests">
+          <select id="guestCount" name="guests" required>
+            <option value="" selected disabled>선택해 주세요</option>
             <option value="1">1명</option>
             <option value="2">2명</option>
             <option value="3">3명</option>
@@ -1537,7 +1538,7 @@
         <div class="field">
           <span class="choice-title">식사 여부</span>
           <div class="choices">
-            <label class="choice"><input type="radio" name="meal" value="식사 예정">식사 예정</label>
+            <label class="choice"><input type="radio" name="meal" value="식사 예정" required>식사 예정</label>
             <label class="choice"><input type="radio" name="meal" value="식사 안 함">식사 안 함</label>
           </div>
         </div>
@@ -1837,6 +1838,10 @@
 
     rsvpForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+
+      if (!rsvpForm.reportValidity()) {
+        return;
+      }
 
       if (!googleFormIsReady()) {
         showToast("구글폼 저장 연결을 마무리해야 합니다");
