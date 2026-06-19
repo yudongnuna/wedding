@@ -298,6 +298,23 @@
       background: var(--line);
     }
 
+    .parents {
+      margin: 20px auto 0;
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      letter-spacing: .03em;
+      word-break: keep-all;
+    }
+
+    .parents strong {
+      color: var(--ink);
+      font-weight: 500;
+      letter-spacing: .06em;
+    }
+
     .date-band {
       background: #ffffff;
       color: var(--ink);
@@ -977,6 +994,16 @@
       align-items: center;
     }
 
+    .account-entry {
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .account-entry:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
     .account-copy,
     .copy-btn {
       min-width: 74px;
@@ -989,6 +1016,11 @@
       color: var(--accent);
       font-size: 12px;
       letter-spacing: .08em;
+    }
+
+    .account-placeholder {
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .closing {
@@ -1270,6 +1302,10 @@
         <i></i>
         <span>서유진</span>
       </div>
+      <div class="parents" aria-label="혼주">
+        <div>황석준 · 김진원의 아들 <strong>황민수</strong></div>
+        <div>서동식 · 황기숙의 딸 <strong>서유진</strong></div>
+      </div>
     </section>
 
     <section class="feature-photo" aria-label="대표 웨딩 사진">
@@ -1452,10 +1488,20 @@
           </span>
         </button>
         <div class="account-panel">
-          <p>토스뱅크</p>
-          <div class="account-number-row">
-            <strong>1000-7612-4133</strong>
-            <button type="button" class="account-copy copy-btn" data-copy="1000-7612-4133">복사</button>
+          <div class="account-entry">
+            <p>황민수 · 토스뱅크</p>
+            <div class="account-number-row">
+              <strong>1000-7612-4133</strong>
+              <button type="button" class="account-copy copy-btn" data-copy="1000-7612-4133">복사</button>
+            </div>
+          </div>
+          <div class="account-entry">
+            <p>아버지 황석준</p>
+            <span class="account-placeholder">계좌번호 준비 중</span>
+          </div>
+          <div class="account-entry">
+            <p>어머니 김진원</p>
+            <span class="account-placeholder">계좌번호 준비 중</span>
           </div>
         </div>
       </div>
@@ -1467,10 +1513,20 @@
           </span>
         </button>
         <div class="account-panel">
-          <p>기업은행</p>
-          <div class="account-number-row">
-            <strong>01077576248</strong>
-            <button type="button" class="account-copy copy-btn" data-copy="01077576248">복사</button>
+          <div class="account-entry">
+            <p>서유진 · 기업은행</p>
+            <div class="account-number-row">
+              <strong>01077576248</strong>
+              <button type="button" class="account-copy copy-btn" data-copy="01077576248">복사</button>
+            </div>
+          </div>
+          <div class="account-entry">
+            <p>아버지 서동식</p>
+            <span class="account-placeholder">계좌번호 준비 중</span>
+          </div>
+          <div class="account-entry">
+            <p>어머니 황기숙</p>
+            <span class="account-placeholder">계좌번호 준비 중</span>
           </div>
         </div>
       </div>
