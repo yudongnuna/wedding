@@ -8,7 +8,14 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <meta property="og:title" content="황민수 · 서유진 Wedding Invitation">
   <meta property="og:description" content="2026.08.29 SAT 18:00 Louisvis Convention">
-  <meta property="og:image" content="assets/gallery/photo-02.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yudongnuna.github.io/wedding/">
+  <meta property="og:image" content="https://yudongnuna.github.io/wedding/assets/gallery/photo-02.jpg">
+  <meta property="og:image:alt" content="황민수와 서유진의 웨딩 사진">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="황민수 · 서유진 Wedding Invitation">
+  <meta name="twitter:description" content="2026.08.29 SAT 18:00 Louisvis Convention">
+  <meta name="twitter:image" content="https://yudongnuna.github.io/wedding/assets/gallery/photo-02.jpg">
   <style>
     :root {
       --black: #111110;
@@ -299,19 +306,20 @@
     }
 
     .parents {
-      margin: 20px auto 0;
+      margin: 24px auto 0;
       display: grid;
-      gap: 6px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-      letter-spacing: .03em;
+      gap: 10px;
+      color: #4c4b47;
+      font-size: 15px;
+      line-height: 1.75;
+      letter-spacing: .02em;
       word-break: keep-all;
     }
 
     .parents strong {
       color: var(--ink);
-      font-weight: 500;
+      font-size: 17px;
+      font-weight: 600;
       letter-spacing: .06em;
     }
 
@@ -767,6 +775,62 @@
       letter-spacing: .08em;
     }
 
+    .contact-subtitle {
+      margin: 28px 0 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .parent-contact-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .parent-contact-group {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .parent-contact-group h3 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: .06em;
+    }
+
+    .parent-contact-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .parent-contact-item:first-of-type {
+      border-top: 0;
+    }
+
+    .parent-contact-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .parent-contact-item strong {
+      display: block;
+      margin-top: 2px;
+      color: var(--ink);
+      font-size: 16px;
+      letter-spacing: .04em;
+    }
+
     .mini-btn {
       min-height: 40px;
       min-width: 58px;
@@ -946,71 +1010,52 @@
       line-height: 1.85;
     }
 
-    .account-card {
-      margin-top: 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 20px 0;
-      display: block;
+    .account-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
-    .account-card + .account-card {
-      margin-top: 0;
-      border-top: 0;
-    }
-
-    .account-toggle {
+    .account-open {
       width: 100%;
-      min-height: 44px;
-      padding: 0;
-      border: 0;
-      background: transparent;
+      min-height: 54px;
+      border: 1px solid var(--line);
+      background: #fff;
       color: var(--ink);
       font: inherit;
-      text-align: left;
+      font-size: 13px;
+      letter-spacing: .08em;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      justify-content: center;
       cursor: pointer;
     }
 
-    .account-toggle::after {
-      content: "+";
-      color: var(--accent);
-      font-size: 20px;
-      line-height: 1;
+    .account-open:hover,
+    .account-open:focus-visible {
+      border-color: var(--accent);
+      outline: 0;
     }
 
-    .account-card.open .account-toggle::after {
-      content: "-";
+    .account-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 22px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
     }
 
-    .account-toggle p,
-    .account-card p {
+    .account-entry p {
       margin: 0;
       color: var(--muted);
       font-size: 13px;
     }
 
-    .account-toggle strong,
-    .account-card strong {
+    .account-entry strong {
       display: block;
       margin-top: 3px;
       font-size: 20px;
       letter-spacing: .04em;
-    }
-
-    .account-panel {
-      display: none;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
-    }
-
-    .account-card.open .account-panel {
-      display: grid;
-      gap: 10px;
     }
 
     .account-number-row {
@@ -1044,9 +1089,8 @@
       letter-spacing: .08em;
     }
 
-    .account-placeholder {
-      color: var(--muted);
-      font-size: 13px;
+    .account-modal-panel {
+      max-width: 420px;
     }
 
     .closing {
@@ -1246,10 +1290,17 @@
       .solid-actions { grid-template-columns: 1fr; }
       .contact-card { grid-template-columns: 1fr 1fr; }
       .contact-card div { grid-column: 1 / -1; }
+      .parent-contact-grid { grid-template-columns: 1fr; }
+      .account-actions { grid-template-columns: 1fr; }
       .date-row { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 540px) {
+      .parent-contact-grid,
+      .account-actions {
+        grid-template-columns: 1fr;
+      }
+
       .story-layout {
         gap: 16px;
       }
@@ -1327,8 +1378,8 @@
         <span>서유진</span>
       </div>
       <div class="parents" aria-label="혼주">
-        <div>황석준 · 김진원의 아들 <strong>황민수</strong></div>
-        <div>서동식 · 황기숙의 딸 <strong>서유진</strong></div>
+        <div>황석준 · 김진원의 장남 <strong>황민수</strong></div>
+        <div>서동식 · 황기숙의 둘째 딸 <strong>서유진</strong></div>
       </div>
     </section>
 
@@ -1489,6 +1540,43 @@
           <a class="mini-btn" href="sms:01077576248">문자</a>
         </div>
       </div>
+      <p class="contact-subtitle">Parents</p>
+      <div class="parent-contact-grid" aria-label="혼주 연락처">
+        <div class="parent-contact-group">
+          <h3>신랑측 혼주</h3>
+          <div class="parent-contact-item">
+            <div>
+              <p>아버지</p>
+              <strong>황석준</strong>
+            </div>
+            <a class="mini-btn" href="tel:01049298272">전화</a>
+          </div>
+          <div class="parent-contact-item">
+            <div>
+              <p>어머니</p>
+              <strong>김진원</strong>
+            </div>
+            <a class="mini-btn" href="tel:01077748272">전화</a>
+          </div>
+        </div>
+        <div class="parent-contact-group">
+          <h3>신부측 혼주</h3>
+          <div class="parent-contact-item">
+            <div>
+              <p>아버지</p>
+              <strong>서동식</strong>
+            </div>
+            <a class="mini-btn" href="tel:01038934887">전화</a>
+          </div>
+          <div class="parent-contact-item">
+            <div>
+              <p>어머니</p>
+              <strong>황기숙</strong>
+            </div>
+            <a class="mini-btn" href="tel:01067711913">전화</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="rsvp">
@@ -1504,63 +1592,9 @@
       <h2>Thankful<br>mind</h2>
       <p class="section-ko">[마음 전하실 곳]</p>
       <p class="lead">멀리서 전해주시는 마음도<br>감사히 간직하겠습니다.</p>
-      <div class="account-card">
-        <button type="button" class="account-toggle" aria-expanded="false">
-          <span>
-            <p>신랑측 계좌번호</p>
-            <strong>황민수</strong>
-          </span>
-        </button>
-        <div class="account-panel">
-          <div class="account-entry">
-            <p>황민수 · 토스뱅크</p>
-            <div class="account-number-row">
-              <strong>1000-7612-4133</strong>
-              <button type="button" class="account-copy copy-btn" data-copy="1000-7612-4133">복사</button>
-            </div>
-          </div>
-          <div class="account-entry">
-            <p>아버지 황석준</p>
-            <span class="account-placeholder">계좌번호 준비 중</span>
-          </div>
-          <div class="account-entry">
-            <p>어머니 김진원</p>
-            <span class="account-placeholder">계좌번호 준비 중</span>
-          </div>
-        </div>
-      </div>
-      <div class="account-card">
-        <button type="button" class="account-toggle" aria-expanded="false">
-          <span>
-            <p>신부측 계좌번호</p>
-            <strong>서유진</strong>
-          </span>
-        </button>
-        <div class="account-panel">
-          <div class="account-entry">
-            <p>서유진 · 기업은행</p>
-            <div class="account-number-row">
-              <strong>01077576248</strong>
-              <button type="button" class="account-copy copy-btn" data-copy="01077576248">복사</button>
-            </div>
-          </div>
-          <div class="account-entry">
-            <p>아버지 서동식</p>
-            <p>농협</p>
-            <div class="account-number-row">
-              <strong>302-0160-0481-11</strong>
-              <button type="button" class="account-copy copy-btn" data-copy="302-0160-0481-11">복사</button>
-            </div>
-          </div>
-          <div class="account-entry">
-            <p>어머니 황기숙</p>
-            <p>농협</p>
-            <div class="account-number-row">
-              <strong>302-0831-6980-01</strong>
-              <button type="button" class="account-copy copy-btn" data-copy="302-0831-6980-01">복사</button>
-            </div>
-          </div>
-        </div>
+      <div class="account-actions">
+        <button type="button" class="account-open" data-account-target="groom">신랑측 계좌번호</button>
+        <button type="button" class="account-open" data-account-target="bride">신부측 계좌번호</button>
       </div>
     </section>
 
@@ -1635,6 +1669,20 @@
         <p>소중한 답변 감사합니다.<br>청첩장으로 돌아갑니다.</p>
         <button type="button" class="submit-btn" id="rsvpDoneBtn">청첩장으로 돌아가기</button>
       </div>
+    </div>
+  </aside>
+
+  <aside class="modal" id="accountModal" aria-label="계좌번호 안내" aria-hidden="true">
+    <div class="modal-panel account-modal-panel" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
+      <div class="modal-head">
+        <div>
+          <p class="kicker">For heart</p>
+          <h3 id="accountModalTitle">Account</h3>
+          <p class="section-ko" id="accountModalSubtitle">[계좌번호]</p>
+        </div>
+        <button type="button" class="modal-close" id="accountCloseBtn" aria-label="계좌번호 닫기">×</button>
+      </div>
+      <div class="account-list" id="accountList"></div>
     </div>
   </aside>
 
@@ -1741,18 +1789,73 @@
       copyText(address, "주소가 복사되었습니다");
     });
 
-    document.querySelectorAll(".account-toggle").forEach((button) => {
-      button.addEventListener("click", () => {
-        const card = button.closest(".account-card");
-        const isOpen = card.classList.toggle("open");
-        button.setAttribute("aria-expanded", String(isOpen));
-      });
+    const accountModal = document.querySelector("#accountModal");
+    const accountTitle = document.querySelector("#accountModalTitle");
+    const accountSubtitle = document.querySelector("#accountModalSubtitle");
+    const accountList = document.querySelector("#accountList");
+    const accountData = {
+      groom: {
+        title: "Groom side",
+        subtitle: "[신랑측 계좌번호]",
+        accounts: [
+          { name: "황민수", bank: "토스뱅크", number: "1000-7612-4133" },
+          { name: "아버지 황석준", bank: "새마을금고", number: "9003209678327" }
+        ]
+      },
+      bride: {
+        title: "Bride side",
+        subtitle: "[신부측 계좌번호]",
+        accounts: [
+          { name: "서유진", bank: "기업은행", number: "01077576248" },
+          { name: "아버지 서동식", bank: "농협", number: "302-0160-0481-11" },
+          { name: "어머니 황기숙", bank: "농협", number: "302-0831-6980-01" }
+        ]
+      }
+    };
+
+    function renderAccountList(type) {
+      const data = accountData[type];
+      accountTitle.textContent = data.title;
+      accountSubtitle.textContent = data.subtitle;
+      accountList.innerHTML = data.accounts.map((account) => `
+        <div class="account-entry">
+          <p>${account.name} · ${account.bank}</p>
+          <div class="account-number-row">
+            <strong>${account.number}</strong>
+            <button type="button" class="account-copy copy-btn" data-copy="${account.number}">복사</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function openAccountModal(type) {
+      renderAccountList(type);
+      accountModal.classList.add("open");
+      accountModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeAccountModal() {
+      accountModal.classList.remove("open");
+      accountModal.setAttribute("aria-hidden", "true");
+    }
+
+    document.querySelectorAll(".account-open").forEach((button) => {
+      button.addEventListener("click", () => openAccountModal(button.dataset.accountTarget));
     });
 
-    document.querySelectorAll("[data-copy]").forEach((button) => {
-      button.addEventListener("click", () => {
-        copyText(button.dataset.copy, "계좌번호가 복사되었습니다");
-      });
+    document.querySelector("#accountCloseBtn").addEventListener("click", closeAccountModal);
+    accountModal.addEventListener("click", (event) => {
+      if (event.target === accountModal) {
+        closeAccountModal();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-copy]");
+      if (!button) {
+        return;
+      }
+      copyText(button.dataset.copy, "계좌번호가 복사되었습니다");
     });
 
     document.querySelectorAll(".choice input[type='radio']").forEach((input) => {
@@ -1872,6 +1975,9 @@
       }
       if (event.key === "Escape" && rsvpModal.classList.contains("open")) {
         closeRsvpModal();
+      }
+      if (event.key === "Escape" && accountModal.classList.contains("open")) {
+        closeAccountModal();
       }
     });
 
@@ -2048,7 +2154,7 @@
 
     if (!prefersReducedMotion) {
       const revealTargets = document.querySelectorAll(
-        ".story .photo-card, .info-row, .guide-item, .contact-card, .account-card"
+        ".story .photo-card, .info-row, .guide-item, .contact-card, .parent-contact-group, .account-open"
       );
       revealTargets.forEach((target) => {
         target.classList.add("reveal");
