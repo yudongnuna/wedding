@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>황민수 · 서유진 Wedding Invitation</title>
+  <title>황민수 · 서유진 모바일 청첩장</title>
   <meta name="description" content="2026년 8월 29일 저녁 6시, 루이비스컨벤션 B1층에서 황민수 · 서유진이 결혼합니다.">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <meta property="og:title" content="황민수 · 서유진 Wedding Invitation">
-  <meta property="og:description" content="2026.08.29 SAT 18:00 Louisvis Convention">
+  <meta property="og:title" content="황민수 · 서유진 모바일 청첩장입니다">
+  <meta property="og:description" content="2026년 8월 29일 토요일 오후 6시, 루이비스 문정 그레이스홀">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yudongnuna.github.io/wedding/">
+  <meta property="og:url" content="https://yudongnuna.github.io/wedding/index.html">
   <meta property="og:image" content="https://yudongnuna.github.io/wedding/assets/kakao-share.jpg">
   <meta property="og:image:alt" content="황민수와 서유진의 웨딩 사진">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="황민수 · 서유진 Wedding Invitation">
-  <meta name="twitter:description" content="2026.08.29 SAT 18:00 Louisvis Convention">
+  <meta name="twitter:title" content="황민수 · 서유진 모바일 청첩장입니다">
+  <meta name="twitter:description" content="2026년 8월 29일 토요일 오후 6시, 루이비스 문정 그레이스홀">
   <meta name="twitter:image" content="https://yudongnuna.github.io/wedding/assets/kakao-share.jpg">
   <style>
     :root {
@@ -1739,7 +1739,7 @@
   <script>
     const weddingDate = new Date("2026-08-29T18:00:00+09:00");
     const address = "서울 송파구 법원로9길 26 H비즈니스파크 D동 B1층 루이비스 문정 그레이스홀";
-    const siteUrl = "https://yudongnuna.github.io/wedding/";
+    const siteUrl = "https://yudongnuna.github.io/wedding/index.html";
     const shareImageUrl = "https://yudongnuna.github.io/wedding/assets/kakao-share.jpg";
     const calendarFileUrl = "https://yudongnuna.github.io/wedding/minsu-yujin-wedding.ics";
     const kakaoJavaScriptKey = "4904e0e70ab160249768864f9c64c08b";
@@ -2023,8 +2023,8 @@
 
     function getShareData() {
       return {
-        title: "황민수 · 서유진 Wedding Invitation",
-        text: "2026년 8월 29일 토요일 18:00, 루이비스 문정 그레이스홀",
+        title: "황민수 · 서유진 모바일 청첩장입니다",
+        text: "2026년 8월 29일 토요일 오후 6시, 루이비스 문정 그레이스홀",
         url: siteUrl
       };
     }
@@ -2038,8 +2038,6 @@
         copyText(location.href, "링크가 복사되었습니다");
       }
     }
-
-    document.querySelector("#shareBtn").addEventListener("click", shareInvitation);
 
     function initKakaoShare() {
       if (!window.Kakao) {
@@ -2062,8 +2060,8 @@
       Kakao.Share.sendDefault({
         objectType: "feed",
         content: {
-          title: "황민수 · 서유진 Wedding Invitation",
-          description: "2026.08.29 SAT 18:00 루이비스 문정 그레이스홀",
+          title: "황민수 · 서유진\n모바일 청첩장입니다",
+          description: "2026년 8월 29일 토요일 오후 6시\n루이비스 문정 그레이스홀",
           imageUrl: shareImageUrl,
           link: {
             mobileWebUrl: siteUrl,
@@ -2089,13 +2087,16 @@
       });
     }
 
-    document.querySelector("#kakaoShareBtn").addEventListener("click", () => {
+    function handleKakaoShare() {
       try {
         shareToKakao();
       } catch {
         copyText(siteUrl, "링크가 복사되었습니다");
       }
-    });
+    }
+
+    document.querySelector("#shareBtn").addEventListener("click", handleKakaoShare);
+    document.querySelector("#kakaoShareBtn").addEventListener("click", handleKakaoShare);
 
     document.querySelector("#linkShareBtn").addEventListener("click", () => {
       copyText(siteUrl, "링크가 복사되었습니다");
