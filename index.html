@@ -21,13 +21,16 @@
       --black: #111110;
       --ink: #171717;
       --muted: #6b6b67;
-      --paper: #ffffff;
+      --paper: #fffefd;
       --ivory: #ffffff;
-      --mist: #f8f8f6;
+      --mist: #fbfaf8;
       --line: rgba(23, 23, 22, .09);
       --white-line: rgba(255, 255, 255, .34);
       --accent: #b9857d;
       --accent-soft: #f8efed;
+      --button-bg: rgba(255, 253, 250, .92);
+      --button-border: rgba(185, 133, 125, .36);
+      --button-hover: #f7eeeb;
     }
 
     * { box-sizing: border-box; }
@@ -37,7 +40,7 @@
     body {
       margin: 0;
       color: var(--ink);
-      background: #ffffff;
+      background: #fffefd;
       font-family: "Pretendard Variable", "Pretendard", "SUIT", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
       line-height: 1.75;
       font-weight: 400;
@@ -190,46 +193,53 @@
     .actions {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      border: 1px solid var(--white-line);
-      background: var(--white-line);
+      gap: 7px;
+      border: 0;
+      background: transparent;
       overflow: hidden;
-      backdrop-filter: blur(16px);
+      backdrop-filter: none;
     }
 
     .actions a,
     .actions button {
-      min-height: 58px;
-      border: 0;
-      background: rgba(0, 0, 0, .36);
-      backdrop-filter: blur(14px);
-      color: #fff;
+      min-height: 56px;
+      border: 1px solid rgba(255, 255, 255, .82);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .94), rgba(255, 247, 244, .82));
+      backdrop-filter: blur(20px);
+      color: #2b2522;
       font: inherit;
-      font-size: 12px;
+      font-size: 13.5px;
       text-decoration: none;
       text-align: center;
       white-space: nowrap;
       display: grid;
       place-items: center;
-      gap: 5px;
+      gap: 4px;
       padding: 9px 4px;
       cursor: pointer;
-      text-shadow: 0 1px 8px rgba(0, 0, 0, .34);
+      text-shadow: none;
+      box-shadow: 0 10px 28px rgba(35, 27, 24, .14);
+    }
+
+    .actions a:active,
+    .actions button:active {
+      transform: translateY(1px);
+      background: rgba(255, 244, 240, .94);
     }
 
     .action-main {
       display: block;
       line-height: 1;
-      letter-spacing: .12em;
-      font-weight: 600;
+      letter-spacing: .06em;
+      font-weight: 700;
     }
 
     .action-sub {
       display: block;
-      color: rgba(255, 255, 255, .82);
-      font-size: 10px;
+      color: var(--accent);
+      font-size: 11px;
       line-height: 1;
-      letter-spacing: .04em;
+      letter-spacing: .02em;
     }
 
     section {
@@ -646,18 +656,18 @@
       margin-top: 28px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      border: 1px solid var(--line);
-      background: var(--line);
+      gap: 10px;
+      border: 0;
+      background: transparent;
     }
 
     .solid-actions a,
     .solid-actions button,
     .copy-btn {
       min-height: 48px;
-      border: 0;
-      background: #fff;
-      color: var(--ink);
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      color: #3f2f2c;
       font: inherit;
       font-size: 12px;
       letter-spacing: .08em;
@@ -669,7 +679,7 @@
     }
 
     .solid-actions .ghost {
-      background: #fff;
+      background: var(--button-hover);
       color: var(--accent);
     }
 
@@ -859,9 +869,9 @@
     .mini-btn {
       min-height: 40px;
       min-width: 58px;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--ink);
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      color: #3f2f2c;
       font-size: 12px;
       letter-spacing: .12em;
       text-decoration: none;
@@ -894,9 +904,9 @@
       width: 100%;
       min-height: 52px;
       margin-top: 28px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--ink);
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      color: #3f2f2c;
       font: inherit;
       letter-spacing: .08em;
       text-transform: none;
@@ -996,8 +1006,8 @@
 
     .submit-btn {
       min-height: 50px;
-      border: 1px solid var(--ink);
-      background: var(--ink);
+      border: 1px solid var(--accent);
+      background: var(--accent);
       color: #fff;
       font: inherit;
       letter-spacing: .14em;
@@ -1048,9 +1058,9 @@
     .account-open {
       width: 100%;
       min-height: 54px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--ink);
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      color: #3f2f2c;
       font: inherit;
       font-size: 13px;
       letter-spacing: .08em;
@@ -1111,8 +1121,8 @@
     }
 
     .account-copy {
-      border: 1px solid var(--line);
-      background: #fff;
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
       color: var(--accent);
       font-size: 12px;
       letter-spacing: .08em;
@@ -1152,9 +1162,9 @@
 
     .footer-share button {
       min-height: 46px;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--ink);
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      color: #3f2f2c;
       font: inherit;
       font-size: 12px;
       letter-spacing: .08em;
@@ -1162,9 +1172,9 @@
     }
 
     .footer-share .kakao-share {
-      border-color: var(--ink);
-      background: var(--ink);
-      color: #fff;
+      border-color: var(--button-border);
+      background: var(--button-hover);
+      color: var(--accent);
     }
 
     .modal {
@@ -1388,9 +1398,9 @@
           </div>
         </div>
         <div class="actions">
-          <a href="#location"><span class="action-main">Map</span><span class="action-sub">지도</span></a>
-          <button type="button" id="shareBtn"><span class="action-main">Share</span><span class="action-sub">공유</span></button>
-          <button type="button" id="calendarBtn"><span class="action-main">Save</span><span class="action-sub">일정 저장</span></button>
+          <a href="#location"><span class="action-main">지도</span></a>
+          <button type="button" id="shareBtn"><span class="action-main">공유</span></button>
+          <button type="button" id="calendarBtn"><span class="action-main">일정 저장</span></button>
         </div>
       </div>
     </header>
