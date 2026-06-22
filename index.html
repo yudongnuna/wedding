@@ -788,16 +788,20 @@
     .parent-contact-grid {
       margin-top: 16px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      grid-template-columns: 1fr;
+      gap: 18px;
     }
 
     .parent-contact-group {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
       border-top: 1px solid var(--line);
       padding-top: 16px;
     }
 
     .parent-contact-group h3 {
+      grid-column: 1 / -1;
       margin: 0 0 12px;
       font-size: 15px;
       font-weight: 600;
@@ -806,15 +810,15 @@
 
     .parent-contact-item {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px;
-      align-items: center;
-      padding: 12px 0;
-      border-top: 1px solid var(--line);
+      grid-template-columns: 1fr;
+      gap: 10px;
+      min-width: 0;
+      padding: 14px 12px;
+      border: 1px solid var(--line);
     }
 
     .parent-contact-item:first-of-type {
-      border-top: 0;
+      border-top: 1px solid var(--line);
     }
 
     .parent-contact-item p {
@@ -829,6 +833,11 @@
       color: var(--ink);
       font-size: 16px;
       letter-spacing: .04em;
+    }
+
+    .parent-contact-item .mini-btn {
+      width: 100%;
+      min-height: 36px;
     }
 
     .mini-btn {
@@ -1379,7 +1388,7 @@
       </div>
       <div class="parents" aria-label="혼주">
         <div>황석준 · 김진원의 장남 <strong>황민수</strong></div>
-        <div>서동식 · 황기숙의 둘째 딸 <strong>서유진</strong></div>
+        <div>서동식 · 황기숙의 차녀 <strong>서유진</strong></div>
       </div>
     </section>
 
